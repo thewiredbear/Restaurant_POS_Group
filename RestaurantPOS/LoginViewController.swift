@@ -16,6 +16,19 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+//        if let user = PFUser.currentUser() {
+//            if user.username=="manager"{
+//                let staffPage = storyboard?.instantiateViewControllerWithIdentifier("manager")
+//                presentViewController(staffPage!, animated: true, completion:nil)
+//            }else if user.username=="staff"{
+//                //performSegueWithIdentifier("staff", sender: nil)
+//                let staffPage = storyboard?.instantiateViewControllerWithIdentifier("staff")
+//                presentViewController(staffPage!, animated: true, completion:nil)
+//            }else if user.username=="chef"{
+//                let staffPage = storyboard?.instantiateViewControllerWithIdentifier("chef")
+//                presentViewController(staffPage!, animated: true, completion:nil)
+//            }
+//        }
         // Do any additional setup after loading the view.
     }
 
@@ -67,6 +80,10 @@ class LoginViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
     }
 
     /*

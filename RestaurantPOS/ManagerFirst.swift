@@ -8,13 +8,49 @@
 
 import UIKit
 import Parse
+import MBProgressHUD
 
-class ManagerFirst: UIViewController, UITableViewDelegate{
+
+
+class ManagerFirst: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var menuTable: UITableView!
+    var posts: [PFObject]?
+
+    func loadDataFromNetwork() {
+        
+        
+        // Display HUD right before the request is made
+        MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        
+        
+        
+        showMenu()
+        
+        
+        // Hide HUD once the network request comes back (must be done on main UI thread)
+        MBProgressHUD.hideHUDForView(self.view, animated: true)
+                                                                        
+        // ... Remainder of response handling code ...
+                                                                        
+    }
+
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
+        
+        loadDataFromNetwork()
+        menuTable.delegate = self
+        menuTable.dataSource = self
+        self.menuTable.reloadData()
+        
+        
+       
+        
+        
+        
         // Do any additional setup after loading the view.
     }
 
@@ -23,19 +59,44 @@ class ManagerFirst: UIViewController, UITableViewDelegate{
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onLogout(sender: AnyObject) {
-        PFUser.logOut()
-        self.performSegueWithIdentifier("managerToMain", sender: nil)
+    
+    func showMenu() {
+        let query = PFQuery(className: "Post")
+        query.orderByDescending("createdAt")
+        query.limit = 20
+        query.findObjectsInBackgroundWithBlock { (posts: [PFObject]?, error: NSError?) -> Void in
+            if let posts = posts {
+                // do something with the array of object returned by the call
+                self.posts = posts
+                self.menuTable.reloadData()
+            } else {
+                print(error?.localizedDescription)
+            }
+        }
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
-        return 10
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posts?.count ?? 0
+        
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        let cell=UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "menuCell")
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("menuCell", forIndexPath: indexPath) as! MenuTableViewCell
+        cell.menuPost = posts![indexPath.row]
+        
+        
+        
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        
         return cell
     }
+
+    
+    @IBAction func onLogout(sender: AnyObject) {
+        PFUser.logOut()
+        NSNotificationCenter.defaultCenter().postNotificationName("userDidLogoutNotification", object: nil)
+    }
+    
 
     /*
     // MARK: - Navigation
