@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import ParseUI
+import MBProgressHUD
 
 var tableNumber:Int!
 
@@ -75,8 +76,6 @@ class OrderingViewController: UIViewController {
     }
 
     @IBAction func addToOrder(sender: AnyObject) {
-        var activeOrders = PFObject(className: "ActiveOrders")
-        
         var newFoodItem = PFObject(className: "newOrder")
         newFoodItem["title"] = name
         newFoodItem["totalPrice"] = newPrice
@@ -86,21 +85,16 @@ class OrderingViewController: UIViewController {
         
         newFoodItem.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if(success){
+                let loadingNote = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                loadingNote.mode = MBProgressHUDMode.Indeterminate
+                loadingNote.labelText = "Adding order to sales"
                 print("food item saved")
+                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
             }else{
                 print(error?.description)
             }
         }
         
-        activeOrders["active"] = newFoodItem
-        
-        activeOrders.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
-            if(success){
-                print("active orders updated")
-            }else{
-                print(error?.description)
-            }
-        }
         
         print("successfully added the order")
         

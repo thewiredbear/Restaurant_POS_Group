@@ -9,12 +9,15 @@
 import UIKit
 import Parse
 import ParseUI
+import MBProgressHUD
 
 var tableNums = [Int]()
 var activeTables = [Int:[PFObject]]()
 
 
 class ChefFirstViewController: UIViewController, UITableViewDelegate {
+    
+    var loadingHUD: MBProgressHUD = MBProgressHUD()
     
     var rowClicked = 0
     
@@ -87,6 +90,9 @@ class ChefFirstViewController: UIViewController, UITableViewDelegate {
     
     
     func buildTable(){
+        let loadingNote = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+        loadingNote.mode = MBProgressHUDMode.Indeterminate
+        loadingNote.labelText = "Fetching the current active orders"
         let query = PFQuery(className: "newOrder")
         query.whereKeyExists("title")
         //var tableNums = [Int]()
@@ -126,6 +132,7 @@ class ChefFirstViewController: UIViewController, UITableViewDelegate {
                     print(activeTables[num] as [PFObject]!)
                 }
                 
+                MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
                 
                 self.menuTable.reloadData()
                 print("reloaded")
@@ -148,6 +155,9 @@ class ChefFirstViewController: UIViewController, UITableViewDelegate {
             }
         }
         activeTables = [:]
+        tableNums = []
+        
+        
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

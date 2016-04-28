@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import ParseUI
+import MBProgressHUD
 
 class detailedTableViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var dishesTable: UITableView!
@@ -58,6 +59,9 @@ class detailedTableViewController: UIViewController, UITableViewDelegate {
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath){
         if editingStyle == UITableViewCellEditingStyle.Delete{
+            let loadingNote = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            loadingNote.mode = MBProgressHUDMode.Indeterminate
+            loadingNote.labelText = "Adding order to sales"
             let query = PFQuery(className: "newOrder")
             query.whereKey("title", equalTo: dishesArray[indexPath.row]["title"])
             query.whereKey("tableNumber", equalTo: dishesArray[indexPath.row]["tableNumber"])
@@ -65,6 +69,8 @@ class detailedTableViewController: UIViewController, UITableViewDelegate {
             let salesObject = PFObject(className: "sales")
             salesObject["title"] = dishesArray[indexPath.row]["title"]
             salesObject["finalPrice"] = dishesArray[indexPath.row]["totalPrice"]
+            
+            
             
             salesObject.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
                 if(success){
@@ -79,6 +85,8 @@ class detailedTableViewController: UIViewController, UITableViewDelegate {
                     object.deleteInBackgroundWithBlock({ (success: Bool, error:NSError?) -> Void in
                         if(success){
                             print("food Item removed")
+                            MBProgressHUD.hideAllHUDsForView(self.view, animated: true)
+
                         }else{
                             print(error?.description)
                         }

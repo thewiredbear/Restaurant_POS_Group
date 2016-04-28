@@ -10,6 +10,8 @@
 		3BF3A37D1F2219D43DD072B4 /* Pods_RestaurantPOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D243ACB7E0951299F52A5B9A /* Pods_RestaurantPOS.framework */; };
 		5A53F8C01CD2616100696D0C /* detailedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53F8BF1CD2616100696D0C /* detailedTableViewController.swift */; };
 		5A53F8C41CD27C1B00696D0C /* dishDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53F8C31CD27C1B00696D0C /* dishDetailsTableViewCell.swift */; };
+		5A53F8C61CD2B3A200696D0C /* salesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53F8C51CD2B3A200696D0C /* salesViewController.swift */; };
+		5A53F8C81CD2B58E00696D0C /* salesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A53F8C71CD2B58E00696D0C /* salesTableViewCell.swift */; };
 		5AA29DCF1CB487D2000B58E4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA29DCE1CB487D2000B58E4 /* AppDelegate.swift */; };
 		5AA29DD11CB487D2000B58E4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA29DD01CB487D2000B58E4 /* ViewController.swift */; };
 		5AA29DD41CB487D2000B58E4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5AA29DD21CB487D2000B58E4 /* Main.storyboard */; };
@@ -30,6 +32,8 @@
 		1FE9F0FB7B140A4C72C47294 /* Pods-RestaurantPOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RestaurantPOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RestaurantPOS/Pods-RestaurantPOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5A53F8BF1CD2616100696D0C /* detailedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = detailedTableViewController.swift; sourceTree = "<group>"; };
 		5A53F8C31CD27C1B00696D0C /* dishDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dishDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		5A53F8C51CD2B3A200696D0C /* salesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = salesViewController.swift; sourceTree = "<group>"; };
+		5A53F8C71CD2B58E00696D0C /* salesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = salesTableViewCell.swift; sourceTree = "<group>"; };
 		5AA29DCB1CB487D2000B58E4 /* RestaurantPOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RestaurantPOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AA29DCE1CB487D2000B58E4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AA29DD01CB487D2000B58E4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +98,8 @@
 				5AA29DCE1CB487D2000B58E4 /* AppDelegate.swift */,
 				5AA29DD01CB487D2000B58E4 /* ViewController.swift */,
 				5AA29DD21CB487D2000B58E4 /* Main.storyboard */,
+				5A53F8C71CD2B58E00696D0C /* salesTableViewCell.swift */,
+				5A53F8C51CD2B3A200696D0C /* salesViewController.swift */,
 				5A53F8BF1CD2616100696D0C /* detailedTableViewController.swift */,
 				5A53F8C31CD27C1B00696D0C /* dishDetailsTableViewCell.swift */,
 				5AC6805E1CD03B4900E7D2EE /* ActiveOrdersViewController.swift */,
@@ -253,6 +259,8 @@
 				BF1DBA501CBDC9600054AA4C /* AddMenuViewController.swift in Sources */,
 				5AA29DD11CB487D2000B58E4 /* ViewController.swift in Sources */,
 				BF1E0A821CC99F8E00654D3F /* OrderingViewController.swift in Sources */,
+				5A53F8C81CD2B58E00696D0C /* salesTableViewCell.swift in Sources */,
+				5A53F8C61CD2B3A200696D0C /* salesViewController.swift in Sources */,
 				5A53F8C01CD2616100696D0C /* detailedTableViewController.swift in Sources */,
 				5ABF521C1CB5B9C600991F4F /* ChefFirstViewController.swift in Sources */,
 				5AA29DCF1CB487D2000B58E4 /* AppDelegate.swift in Sources */,

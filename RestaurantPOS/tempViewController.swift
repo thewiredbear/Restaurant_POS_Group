@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 
+var finalsales = [PFObject]()
 
 class tempViewController: UIViewController {
 
