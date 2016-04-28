@@ -10,8 +10,6 @@ import UIKit
 import Parse
 import ParseUI
 
-var tableNums = [Int]()
-var activeTables = [Int:[PFObject]]()
 
 class tempViewController: UIViewController {
 
@@ -33,63 +31,63 @@ class tempViewController: UIViewController {
     
     
     @IBAction func printActiveTables(sender: AnyObject) {
-        let query = PFQuery(className: "ActiveOrders")
-        query.includeKey("active")
-        //var tableNums = [Int]()
-        
-        query.findObjectsInBackgroundWithBlock { (orders: [PFObject]?, error: NSError?) -> Void in
-            if let orders = orders {
-                print("check")
-                //print(orders.count)
-                for order in orders{
-                    //print("wtf")
-                    //print(order)
-                    var tempFoodItem = order
-                    let tableNum = tempFoodItem["active"]["tableNumber"] as! Int
-                    //print(tableNum)
-                    
-                    if tableNums.contains(tableNum){
-                        print("table number already exists in array")
-                    }else{
-                        tableNums.append(tableNum)
-                    }
-                    
-                    //activeTables[tableNum]?.append(tempFoodItem["active"] as! PFObject)
-                    
-                    if activeTables[tableNum] != nil{
-                        activeTables[tableNum]?.append(tempFoodItem["active"] as! PFObject)
-                    }else{
-                        activeTables[tableNum] = [PFObject]()
-                        activeTables[tableNum]?.append(tempFoodItem["active"] as! PFObject)
-                    }
-                    
-                    
-                }
-                
-                print(activeTables.count)
-                
-                for num in tableNums{
-                    print(activeTables[num] as [PFObject]!)
-                }
-                
-//                for table in tableNums{
-//                    print(table)
-//                    var temp = [PFObject]()
-//                    for foodOrder in orders{
-//                        var finalTable = foodOrder["active"]["tableNumber"] as! Int
-//                        
-//                        if finalTable==table{
-//                            temp.append(foodOrder["active"] as! PFObject)
-//                        }
+//        let query = PFQuery(className: "ActiveOrders")
+//        query.includeKey("active")
+//        //var tableNums = [Int]()
+//        
+//        query.findObjectsInBackgroundWithBlock { (orders: [PFObject]?, error: NSError?) -> Void in
+//            if let orders = orders {
+//                print("check")
+//                //print(orders.count)
+//                for order in orders{
+//                    //print("wtf")
+//                    //print(order)
+//                    var tempFoodItem = order
+//                    let tableNum = tempFoodItem["active"]["tableNumber"] as! Int
+//                    //print(tableNum)
+//                    
+//                    if tableNums.contains(tableNum){
+//                        print("table number already exists in array")
+//                    }else{
+//                        tableNums.append(tableNum)
 //                    }
+//                    
+//                    //activeTables[tableNum]?.append(tempFoodItem["active"] as! PFObject)
+//                    
+//                    if activeTables[tableNum] != nil{
+//                        activeTables[tableNum]?.append(tempFoodItem["active"] as! PFObject)
+//                    }else{
+//                        activeTables[tableNum] = [PFObject]()
+//                        activeTables[tableNum]?.append(tempFoodItem["active"] as! PFObject)
+//                    }
+//                    
+//                    
 //                }
-                
-            } else{
-                
-            }
-        }
-        
-        activeTables = [:]
+//                
+//                print(activeTables.count)
+//                
+//                for num in tableNums{
+//                    print(activeTables[num] as [PFObject]!)
+//                }
+//                
+////                for table in tableNums{
+////                    print(table)
+////                    var temp = [PFObject]()
+////                    for foodOrder in orders{
+////                        var finalTable = foodOrder["active"]["tableNumber"] as! Int
+////                        
+////                        if finalTable==table{
+////                            temp.append(foodOrder["active"] as! PFObject)
+////                        }
+////                    }
+////                }
+//                
+//            } else{
+//                
+//            }
+//        }
+//        
+//        activeTables = [:]
     }
     
     

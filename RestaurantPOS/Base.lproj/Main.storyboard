@@ -38,12 +38,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="chef" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RCz-5h-h6a">
-                                <rect key="frame" x="180" y="409" width="34" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YUE-AC-JEm">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <items>
@@ -56,18 +50,39 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OYT-wg-OOb">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tableNumber" id="hrI-77-zW9">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hrI-77-zW9" id="dDP-Qk-lgD">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="kbv-lB-ULR" id="Fjd-lg-auA"/>
+                                    <outlet property="delegate" destination="kbv-lB-ULR" id="Imh-CC-ZLD"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Active Orders" image="iconmonstr-menu-5-32" id="H3z-a3-DG6"/>
+                    <navigationItem key="navigationItem" id="1gZ-ZO-Lkc"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="menuTable" destination="OYT-wg-OOb" id="lAq-oH-aPm"/>
                         <segue destination="BYZ-38-t0r" kind="modal" identifier="chefToMain" id="WbB-aZ-ycB"/>
+                        <segue destination="10n-dM-7wa" kind="modal" identifier="toDetailsTable" id="OPV-7f-6en"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Xt-no-dfF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1451.2" y="428.83999999999997"/>
+            <point key="canvasLocation" x="-1452" y="428"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="vpl-TX-f99">
@@ -184,7 +199,7 @@
         <!--Active Orders-->
         <scene sceneID="uHn-D1-Evs">
             <objects>
-                <viewController id="d9X-ZO-Nib" sceneMemberID="viewController">
+                <viewController id="d9X-ZO-Nib" customClass="ActiveOrdersViewController" customModule="RestaurantPOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UeN-Nn-Xdo"/>
                         <viewControllerLayoutGuide type="bottom" id="vjq-gV-kLG"/>
@@ -192,10 +207,33 @@
                     <view key="view" contentMode="scaleToFill" id="6ns-qe-bzd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="71" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JaA-nh-h9o">
+                                <rect key="frame" x="0.0" y="28" width="320" height="491"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tableNumber" rowHeight="71" id="JlH-tb-pME">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="71"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JlH-tb-pME" id="Bf9-8p-S9Y">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="70.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="d9X-ZO-Nib" id="iA6-F0-GUE"/>
+                                    <outlet property="delegate" destination="d9X-ZO-Nib" id="58v-Ot-uf1"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Active Orders" image="iconmonstr-layer-10-32" id="bnX-iX-MrP"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="activeOrdersTable" destination="JaA-nh-h9o" id="E79-Xm-7ur"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aHl-LI-K3W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -456,6 +494,105 @@
             </objects>
             <point key="canvasLocation" x="1999" y="-915"/>
         </scene>
+        <!--Detailed Table View Controller-->
+        <scene sceneID="XgA-bc-aw9">
+            <objects>
+                <viewController id="10n-dM-7wa" customClass="detailedTableViewController" customModule="RestaurantPOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bY5-T6-Yh6"/>
+                        <viewControllerLayoutGuide type="bottom" id="re2-pd-6dd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FDw-xe-peD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7RY-xl-nQC">
+                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="8Fy-ig-NOq">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="l8w-Re-nst">
+                                            <connections>
+                                                <action selector="goBack:" destination="10n-dM-7wa" id="10u-NA-Wlr"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="137" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0ov-ef-Dzq">
+                                <rect key="frame" x="0.0" y="72" width="320" height="447"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="dishCell" rowHeight="137" id="OT0-g8-7ti" customClass="dishDetailsTableViewCell" customModule="RestaurantPOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="137"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OT0-g8-7ti" id="iCA-Lz-P5g">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="136.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name of the Dish" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f1u-sX-nKM">
+                                                    <rect key="frame" x="8" y="8" width="133" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Quant: 5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJ7-hp-2xc">
+                                                    <rect key="frame" x="246" y="8" width="66" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6l-qf-eZj">
+                                                    <rect key="frame" x="8" y="37" width="304" height="64"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="dishName" destination="f1u-sX-nKM" id="qWZ-Fx-MRm"/>
+                                            <outlet property="dishNotes" destination="v6l-qf-eZj" id="qHu-C6-NRy"/>
+                                            <outlet property="dishQuant" destination="wJ7-hp-2xc" id="6eW-oA-zsv"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="10n-dM-7wa" id="cxG-5w-VrX"/>
+                                    <outlet property="delegate" destination="10n-dM-7wa" id="b5m-Sc-ScD"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="0yM-Ii-vXO"/>
+                    <connections>
+                        <outlet property="dishesTable" destination="0ov-ef-Dzq" id="ZSp-Vh-R55"/>
+                        <segue destination="kbv-lB-ULR" kind="modal" identifier="toActiveTables" id="KX1-0c-oiD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cql-MU-Hq2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2055" y="428"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="eTy-iq-d9D">
+            <objects>
+                <viewController id="Mu6-Hh-RNJ" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ay0-eY-POK"/>
+                        <viewControllerLayoutGuide type="bottom" id="eAl-0X-FDJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Y3U-Lx-Fcg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dbq-rO-Gp8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1452" y="794"/>
+        </scene>
         <!--Temp View Controller-->
         <scene sceneID="paP-FD-CBS">
             <objects>
@@ -680,8 +817,9 @@
         <image name="iconmonstr-menu-5-32" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="RAU-mc-Iam"/>
+        <segue reference="WbB-aZ-ycB"/>
+        <segue reference="KX1-0c-oiD"/>
         <segue reference="pyb-gr-qkz"/>
-        <segue reference="uPo-bc-iOj"/>
+        <segue reference="Ytn-Ll-Wau"/>
     </inferredMetricsTieBreakers>
 </document>

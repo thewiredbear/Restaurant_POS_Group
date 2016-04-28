@@ -82,6 +82,7 @@ class OrderingViewController: UIViewController {
         newFoodItem["totalPrice"] = newPrice
         newFoodItem["notes"] = textView.text
         newFoodItem["tableNumber"] = Int(tableNum.text!)
+        newFoodItem["quantity"] = Int(stepper.value)
         
         newFoodItem.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if(success){

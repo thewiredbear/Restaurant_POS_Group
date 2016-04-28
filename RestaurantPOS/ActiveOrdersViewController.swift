@@ -1,8 +1,8 @@
 //
-//  balfjhvslkhgViewController.swift
+//  ActiveOrdersViewController.swift
 //  RestaurantPOS
 //
-//  Created by Shakeel Daswani on 4/24/16.
+//  Created by Parth Bhardwaj on 4/26/16.
 //  Copyright © 2016 TheThreeNoobs. All rights reserved.
 //
 
@@ -10,25 +10,17 @@ import UIKit
 import Parse
 import ParseUI
 
-class balfjhvslkhgViewController: UIViewController {
+var temp = 0
+
+
+class ActiveOrdersViewController: UIViewController, UITableViewDelegate {
+    @IBOutlet weak var activeOrdersTable: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var activOrders = PFObject(className: "activeOrders")
-        var tabNum = PFObject(className: "8")
-        var dish = PFObject(className: "foodItem")
-        dish["quantity"]=2
-        dish["finalPrice"]=34.5
         
-        tabNum["foodItem"]=dish
-        activOrders["8"]=tabNum
-        
-        
-        let workingTable = activOrders["8"]
-       // let removingDish = workingTable["foodItem"]
-        
-     //   removingDish.deleteInBackground()
+        temp = 5
         
         // Do any additional setup after loading the view.
     }
@@ -38,6 +30,18 @@ class balfjhvslkhgViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+        return temp
+    }
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+        let cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "tableNumber")
+        cell.textLabel?.text="num"
+        return cell
+    }
+    
+        
 
     /*
     // MARK: - Navigation
